@@ -1,0 +1,57 @@
+class Book:
+    def __init__(self, title, author, year):
+        self.title = title
+        self.author = author
+        self.year = year
+
+    def __str__(self):
+        return f"Book Name: {self.title}, Author Name: {self.author}, Year: {self.year}"
+
+
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self):
+        title = input("Enter name of book: ")
+        author = input("Enter Author's Name: ")
+        try:
+            year = int(input("Enter Year: "))
+        except ValueError:
+            print("Invalid year format. Setting year to 0.")
+            year = 0
+        
+        new_book = Book(title, author, year)
+        self.books.append(new_book)
+        print("Book added successfully!")
+
+    def view_books(self):
+        if not self.books:
+            print("\n--- Library is Empty ---")
+            return
+        print("\n--- Library List ---")
+        for book in self.books:
+            print(book)
+
+
+def main():
+    library = Library()
+    while True:
+        print("\n--- Library Management ---")
+        print("1. Add books")
+        print("2. View books")
+        print("3. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            library.add_book()
+        elif choice == '2':
+            library.view_books()
+        elif choice == '3':
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid choice. Try again.")
+
+if __name__ == "__main__":
+    main()
